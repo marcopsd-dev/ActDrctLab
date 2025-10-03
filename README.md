@@ -10,13 +10,19 @@ This is a step to step turorial on how to sep up an Active Directroy lab in a cl
 
 - <b>PowerShell</b>
 - <b>AWS Private Clouds</b>
+- <b>DHCP Server</b>
+- <b>NAT Routing<b>
+- <b>Active Directory Domain Setup<b>
 - <b>AWS EC2</b>
+- <b>AWS Route 53<b>
+- <b>Windows Server Management<b>
 - <b>Windows App/Parallels Desktop</b>
 
 <h2>Environments Used </h2>
 
 - <b>MacOS Seqouia 15.6.1</b> 
 - <b>AWS</b>
+- <b>Windows App<b>
   
 <h2>Program walk-through:</h2>
 
