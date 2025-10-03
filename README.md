@@ -2,7 +2,7 @@
 
 
 <h2>Description</h2>
-This is a step to step turorial on how to sep up an Active Directroy lab in a cloud-based environment using MacOS, AWS, PowerShell, and the RDP protocol. 
+This is a step to step turorial on how to sep up Active Directroy in a cloud-based environment to simulate a real enterprise network environment using AWS, PowerShell, MacOS, and the RDP protocol.
 <br />
 
 
@@ -27,6 +27,6 @@ This is a step to step turorial on how to sep up an Active Directroy lab in a cl
 <h2>Program walk-through:</h2>
 
 <p align="center">
-Create an instance in AWS EC2: <br/>
-<img src="" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+Create an AWS EC2 instance: <br/>
+<img src="" height="80%" width="80%" alt="Create an AWS EC2 instance"/>
 <br />
