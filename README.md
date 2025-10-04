@@ -22,7 +22,6 @@ This is a step to step turorial on how to sep up Active Directroy in a cloud-bas
 
 - <b>MacOS Seqouia 15.6.1</b> 
 - <b>AWS</b>
-- <b>Windows App<b>
   
 <h2>Program walk-through:</h2>
 
@@ -46,3 +45,13 @@ This is a step to step turorial on how to sep up Active Directroy in a cloud-bas
   <b>3. Select your instance type (For the server we'll use a small sized instance, and for the client we'll use a micro sized instance). We'll also need to create a key pair, name the key pair, select the "RSA" type and the ".pem" file format. (This will donwload a file into our computer that we'll need in order to decrypt the password to connect to either instance).</b><br>
   <img src="https://i.imgur.com/6HUdk69.png" height="80%" width="80%" alt="EC2 console"/><br>
   <img src="https://i.imgur.com/hb7K9Up.png" height="80%" width="80%" alt="EC2 console"/><br>
+  <b>NOTE: This step will be divided in 2 parts, it's very importat that we check that these settings are correct, otherwise our intances won't be able to communicate with each other.</b><br><br>
+  <b>4a. First we need to make sure that the correct VPC and subnets are selected (for the Internet facing server we'll need to be in the public subnet of the AZ [us-east-1b], and for the windows client we'll need to be in the private subnet of the same AZ [us-east-1b]). We also need to make sure that the "Auto-assign public IP" function is enabled (only for the external server).</b><br>
+  <img src="https://i.imgur.com/G2WZlwy.png" height="80%" width="80%" alt="EC2 console"/><br>
+  <b>4b. Next, we need to select "Create security group" (this acts as a firewall for the VPCs and the AWS Instances). For the external server we'll select RDP, HTTPS, and HTTP. For the Windows client we'll only select RDP (this will allow us to connect to the Intance).</b><br><br>   
+  <b>5. If you have configured an IAM user for your AWS account we can give it permissions to connect to and modify the instances, if you haven't configure it you can skip this step (keep in mind that is always recommended to use an IAM user instead of the AWS root account for security reasons). You'll find this configuration in "Advanced details". Finally, you can click on "Launch Instance" (remember to create the second instance with the settings for the windows client). </b><br>
+   <img src="https://i.imgur.com/6QfuH5V.png" height="80%" width="80%" alt="EC2 console"/><br>
+   <b>6a. The last step is to create a second network interface for the internet facing server (this is to be able to connect both instances through their IP addresses). You'll click on "Create Network Interface", add a description, select the subnet in which the external server is located, add the same security group as the instance, and click "Create Network Interface" at the bottom of the page. </b><br>
+   <img src="https://i.imgur.com/NErZMc3.png" height="80%" width="80%" alt="EC2 console"/><br>
+  <b>6b. You'll need to attach the network interface to the VPC and the instance where we'll create the external server. Select the newly created network interface, click on actions, click on attach, and you'll have to select the corect VPC and instance, then attach.</b><br>
+  <img src="https://i.imgur.com/HiAkrod.png" height="80%" width="80%" alt="EC2 console"/><br>
