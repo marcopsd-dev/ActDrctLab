@@ -27,6 +27,6 @@ This is a step to step turorial on how to sep up Active Directroy in a cloud-bas
 <h2>Program walk-through:</h2>
 
 <p align="center">
-Create an AWS EC2 instance: <br/>
-<img src="" height="80%" width="80%" alt="Create an AWS EC2 instance"/>
+Create a VPC in AWS: <br/>
+<img src="https://imgur.com/a/DxXB1wF" height="80%" width="80%" alt="AWS VPC"/>
 <br />
