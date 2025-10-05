@@ -36,6 +36,7 @@ This is a step to step turorial on how to sep up Active Directroy in a cloud-bas
   <br>
   <b>4. Depending on the size of the lab that you want to create, you can add more AZ's to implement a more complex network with multiple   servers and/or clients. For this lab I'll only create 2 AZ's. Finally click on "Create VPC" at the bottom of the page. </b>
   <img src="https://i.imgur.com/PQyN2K7.png" height="80%" width="80%" alt="AWS VPC"/><br><br>
+    
 <h3 align="center">Creating an AWS Virtual Machine (aka. AWS Instance):</h3>
     <b>NOTE: On this step we'll need to create 2 AWS Instances, 1 for the external internet facing server, and 1 for the internal Windows client.</b><br><br>
   <b>1. On the AWS console searchbar type in EC2, and click on "Launch Instance".</b><br>
@@ -55,3 +56,16 @@ This is a step to step turorial on how to sep up Active Directroy in a cloud-bas
    <img src="https://i.imgur.com/NErZMc3.png" height="80%" width="80%" alt="EC2 console"/><br>
   <b>6b. You'll need to attach the network interface to the VPC and the instance where we'll create the external server. Select the newly created network interface, click on actions, click on attach, and you'll have to select the corect VPC and instance, then attach.</b><br>
   <img src="https://i.imgur.com/HiAkrod.png" height="80%" width="80%" alt="EC2 console"/><br>
+
+<h3 align="center">Connecting to our instances with RDP:</h3><br>
+  <b>1. On the EC2 console, select the external server instance and copy the public IPv4 address. Then we'll go to Windows app, click on "Devices", click on the "+" symbol on the upper right corner, click on "Add a PC" then paste the IPv4 address where it says "PC name", click on "Add" and finally double click on the PC to connect to the instance. </b><br><br>
+  <img src="https://i.imgur.com/ENym6c1.jpeg" height="80%" width="80%" alt="EC2 console"/><br><br>
+  <b>2a. Once you're connecting to the instance it'll ask for your credentials (a username and password). On the EC2 console you'll select the instance, click "Connect", click on "RDP client", copy the username and click on get password"</b><br>
+  <img src="https://i.imgur.com/kZ7uYvG.png" height="80%" width="80%" alt="EC2 console"/><br>
+  <b>2b. You'll click on "Upload private key file" (the .pem file we downloaded in our computer). Once uploaded we'll click on "Decrypt password", then copy the password and use it on the Windows app to connect to our instance. </b><br>
+  <img src="https://i.imgur.com/vSsPu3L.png" height="80%" width="80%" alt="EC2 console"/><br>
+  <b>NOTE: These next steps are meant after we setup our server on the first instance. To connect to our second instance (the Windows client) we can redo the previous steps and use the Windows app, or we can use our server's RDP protocol to connect to the Windows client (kind of like Inception! a computer inside of a computer inside of another computer!)</b><br><br>
+  <b>1. Click on the Windows search bar and type RDP.</b><br><br>
+   <img src="https://i.imgur.com/6kgcbe7.png" height="80%" width="80%" alt="EC2 console"/><br><br>
+  <b>2. Once the "remote desk connection" is opened, you'll have to paste the public IPv4 address for the second instance on the "Computer name". After clicking on "Connect" you'll have to enter the username and password for the second instance (if you've forgotten how to get these, you can refer back to the previous steps on how to get the username and password).</b><br><br>
+  <img src="https://i.imgur.com/Vrds4f5.png" height="80%" width="80%" alt="EC2 console"/><br>
