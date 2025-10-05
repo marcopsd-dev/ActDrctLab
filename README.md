@@ -68,4 +68,16 @@ This is a step to step turorial on how to sep up Active Directroy in a cloud-bas
   <b>1. Click on the Windows search bar and type RDP.</b><br><br>
    <img src="https://i.imgur.com/6kgcbe7.png" height="80%" width="80%" alt="EC2 console"/><br><br>
   <b>2. Once the "remote desk connection" is opened, you'll have to paste the public IPv4 address for the second instance on the "Computer name". After clicking on "Connect" you'll have to enter the username and password for the second instance (if you've forgotten how to get these, you can refer back to the previous steps on how to get the username and password).</b><br><br>
-  <img src="https://i.imgur.com/Vrds4f5.png" height="80%" width="80%" alt="EC2 console"/><br>
+  <img src="https://i.imgur.com/Vrds4f5.png" height="80%" width="80%" alt="EC2 console"/><br><br>
+
+<h3 align="center">Connecting both instances' NIC: </h3><br><br>
+  <b>1. First you'll need to login into your Windows client instance. Click on the search bar and type "cdm" (this will open the command line console). In there you'll type "ipconfig" to reveal the network's IPv4 address and subnet mask (we'll need these so make sure to remember them or write them down). Then we'll switch back to the external server instance.</b><br><br>
+  <img src="https://i.imgur.com/QV7ReQR.png" height="80%" width="80%" alt="EC2 console"/><br><br>
+  <b>2. Once logged-in to the external server, you'll click on the ethernet symbol on the bottom right corner (this will open your ethernet settings). And click on "Change adapter options".</b><br><br>
+  <img src="https://i.imgur.com/f4KLoCZ.png" height="80%" width="80%" alt="EC2 console"/><br><br>
+  <b>3. We'll have to change the network interfaces' names to "Internal" and "External" (one network interface will connect to the internet, and the other to the Windows client instance), rightclick on the network interface and click "Rename". After naming both, we'll click on "Properties". </b><br><br>
+  <img src="https://i.imgur.com/N1d8vzc.png" height="80%" width="80%" alt="EC2 console"/><br><br>
+  <b>4. From there we'll click on "Internet protocol version 4". And a second window should open up, there we select "Use following IP address" and we type in the PIv4 address and subnet mask from the Windows client instance (leave blank the "Default gateway", we'll need extra configurations later on to make sure both our instances can communicate properly to each other). </b><br><br>
+  <img src="https://i.imgur.com/eYKEVAp.png" height="80%" width="80%" alt="EC2 console"/><br><br>
+
+<h3 align="center">Setting up Active Directory and Domain:</h3>
