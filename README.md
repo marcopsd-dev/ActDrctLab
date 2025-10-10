@@ -16,25 +16,24 @@ This is a step to step turorial on how to sep up Active Directroy in a cloud-bas
 - <b>AWS EC2</b>
 - <b>AWS Route 53<b>
 - <b>Windows Server Management<b>
-- <b>Windows App/Parallels Desktop</b>
+- <b>Windows App</b>
 
 <h2>Environments Used </h2>
 
 - <b>MacOS Seqouia 15.6.1</b> 
-- <b>AWS</b>
+- <b>Amazon Web Services</b>
   
 <h2>Program walk-through:</h2>
 
 <h3 align="center">Creating a VPC in AWS:</h3> <br/>
   <p aling="left">
-  <b>1. Go to the AWS console and type in VPC on the searchbar.</b><br>
-  <b>2. Once in the VPC dashboard you'll click on "Create VPC".</b>
+  <b>1. Go to the AWS console and type in VPC on the searchbar. Once in the VPC dashboard you'll click on "Create VPC".</b>
   <img src="https://i.imgur.com/aGzRHDU.png" height="80%" width="80%" alt="AWS VPC"/>
   <br /><br>
-  <b>3.Select "VPC and more" to create a custom VPC. This will allow us to create 1 private subnet for the windows client, and 1 public subnet for the internet facing server. </b><br>
+  <b>2.Select "VPC and more" to create a custom VPC. This will allow us to create 1 private subnet for the windows client, and 1 public subnet for the internet facing server. </b><br>
   <img src="https://i.imgur.com/IO19JWY.png" height="80%" width="80%" alt="AWS VPC"/><br>
   <br>
-  <b>4. Depending on the size of the lab that you want to create, you can add more AZ's to implement a more complex network with multiple   servers and/or clients. For this lab I'll only create 2 AZ's. Finally click on "Create VPC" at the bottom of the page. </b>
+  <b>3. Depending on the size of the lab that you want to create, you can add more AZ's to implement a more complex network with multiple   servers and/or clients. For this lab I'll only create 2 AZ's. Finally click on "Create VPC" at the bottom of the page. </b>
   <img src="https://i.imgur.com/PQyN2K7.png" height="80%" width="80%" alt="AWS VPC"/><br><br>
     
 <h3 align="center">Creating an AWS Virtual Machine (aka. AWS Instance):</h3>
@@ -77,7 +76,29 @@ This is a step to step turorial on how to sep up Active Directroy in a cloud-bas
   <img src="https://i.imgur.com/f4KLoCZ.png" height="80%" width="80%" alt="EC2 console"/><br><br>
   <b>3. We'll have to change the network interfaces' names to "Internal" and "External" (one network interface will connect to the internet, and the other to the Windows client instance), rightclick on the network interface and click "Rename". After naming both, we'll click on "Properties". </b><br><br>
   <img src="https://i.imgur.com/N1d8vzc.png" height="80%" width="80%" alt="EC2 console"/><br><br>
-  <b>4. From there we'll click on "Internet protocol version 4". And a second window should open up, there we select "Use following IP address" and we type in the PIv4 address and subnet mask from the Windows client instance (leave blank the "Default gateway", we'll need extra configurations later on to make sure both our instances can communicate properly to each other). </b><br><br>
+  <b>4. From there we'll click on "Internet protocol version 4". And a second window should open up, there we select "Use following IP address" and we type in the IPv4 address and subnet mask from the Windows client instance (leave blank the "Default gateway", we'll need extra configurations later on to make sure both our instances can communicate properly to each other), click OK to save the changes. </b><br><br>
   <img src="https://i.imgur.com/eYKEVAp.png" height="80%" width="80%" alt="EC2 console"/><br><br>
 
-<h3 align="center">Setting up Active Directory and Domain:</h3>
+<h3 align="center">Setting up Active Directory and DNS:</h3><br><br>
+  <b>1. On the Windows searchbar we'll type "Server Manager" and open the application. Once in the server manager console we'll click on "Add roles and features".</b><br>
+  <img src="https://i.imgur.com/8EksxTk.png" height="80%" width="80%" alt="Server Manager Console"/><br>
+  <b>2. We'll click on "Next" 3 times until we found ourselves in the "Server roles" tab. In there, we'll select "Active Directory Domain Services", then click on "Add features" on the popup window. Then we'll click "Next" 2 more times, and finally "Install". (we don't need to make any other extra selections since we are only working with one server, so our server should be selected by default, that's why we skip on most tabs by clicking "Next"). </b><br>
+  <img src="https://i.imgur.com/dik2ZmB.png" height="80%" width="80%" alt="Server Manager Console"/><br>
+  <b>3. Next, on the server manager console, we'll click on the flag icon on the upper right corner. Then, we'll click on "Promote this server to a domain controller".</b><br>
+  <img src="https://i.imgur.com/mPxUIkD.png" height="80%" width="80%" alt="Server Manager Console"/><br>
+  <b>4. On the popup window, we'll select "Add a new forest", choose a root domain name and click on "Next" (we can choose something generic or easy to remember like mydomain.com).</b><br>
+  <img src="https://i.imgur.com/mB1a8KK.png" height="80%" width="80%" alt="Server Manager Console"/><br>
+  <b>5. We'll be prompted to choose a password and click "Next" (create a simple password easy to remember like "Pasword" or "123456789", but remember, this is only applicable to this lab, please don't use such passwords in real accounts).</b><br>
+  <img src="https://i.imgur.com/RDuEjWC.png" height="80%" width="80%" alt="Server Manager Console"/><br>
+  <b>6. Finally, we'll click on "Next" 4 more times until we can click on "Install". After that, we'll be logged out of the instance and we'll have to log back in.</b><br>
+  <img src="https://i.imgur.com/H93hpNt.png" height="80%" width="80%" alt="Server Manager Console"/><br><br>
+  
+<h3 align="center">Creating a Domain Admin user:</h3><br><br>
+  <b>1. On the windows searchbar we'll type "Active Directory" and we'll open the folder named "Active Directory Users and Computers". We'll rightclick on our domain name, and select "New", then select "Organizational Unit". </b><br>
+  <img src="https://i.imgur.com/Nv2dkqV.png" height="80%" width="80%" alt="Server Manager Console"/><br>
+  <b>2. On the popup window, we'll create an object/folder named "_ADMINS", then click on "OK". </b><br>
+  <img src="https://i.imgur.com/gpMfzhb.png" height="80%" width="80%" alt="Server Manager Console"/><br>
+  <b>3. Then we'll rightclick on the new object "_ADMINS", select "New", then select "User". </b><br>
+  <img src="https://i.imgur.com/JEr0Y5I.png" height="80%" width="80%" alt="Server Manager Console"/><br>
+  <b>4. A new window will open up and we'll have to type in our name, last mame, and a username, then click on "Next" (we can use this format for the username: "a- + your first name inicial letter + your last name" so it looks like this: "a-mposadas"). We'll also have to create a password, select "Password never expires" and then click on "Next" (again, not the best security measures, ideally we'd have to create a strong password and periodically change it, but for the sake of the lab we'll keep simple and with those settings), and finally click on "Finish". </b><br>
+  <img src="https://i.imgur.com/tNUx8PH.png" height="80%" width="80%" alt="Server Manager Console"/><br>
